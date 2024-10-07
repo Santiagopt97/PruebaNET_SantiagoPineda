@@ -18,7 +18,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Guests
         {
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<ActionResult<Guest>> Update([FromHeader]int id, [FromBody] GuestDTO user){
             await _guestRepository.Update(id, user);
             return Ok();
