@@ -64,13 +64,13 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "TechStore API",
+        Title = "Filtro .NET",
         Version = "v1",
-        Description = "API for managing a Tech store database. This version includes basic CRUD operations for users, products and categories.",
+        Description = "API for managing a Hotel store database.",
         Contact = new OpenApiContact
         {
-            Name = "Valeria Piedrahita Arbelaez" ,
-            Email = "valetqm2002@gmail.com",
+            Name = "Santiago Pineda Tobon" ,
+            Email = "santiagopineda99@gmail.com",
         }
     });
 
