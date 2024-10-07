@@ -1,0 +1,6 @@
+@PruebaNET_SantiagoPineda_HostAddress = http://localhost:5020
+
+GET {{PruebaNET_SantiagoPineda_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
