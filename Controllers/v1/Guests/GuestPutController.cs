@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PruebaNET_SantiagoPineda.DTOs.GuestDTO;
 using PruebaNET_SantiagoPineda.Models;
@@ -19,6 +20,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Guests
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<Guest>> Update([FromHeader]int id, [FromBody] GuestDTO user){
             await _guestRepository.Update(id, user);
             return Ok();

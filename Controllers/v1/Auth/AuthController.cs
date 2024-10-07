@@ -24,7 +24,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Auth
         public async Task<ActionResult<string>> login( LoginDTO login)
         {
             var token = await _employeeRepository.Login(login);
-            return Ok($"Logged in successfully this is your token: {token}");
+            return Ok($"Token: {token}");
         }
         
     }
