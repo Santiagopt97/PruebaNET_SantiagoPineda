@@ -59,7 +59,37 @@ builder.Services.AddAuthentication(config =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "TechStore API",
+        Version = "v1",
+        Description = "API for managing a Tech store database. This version includes basic CRUD operations for users, products and categories.",
+        Contact = new OpenApiContact
+        {
+            Name = "Valeria Piedrahita Arbelaez" ,
+            Email = "valetqm2002@gmail.com",
+        }
+    });
+
+    c.EnableAnnotations();
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 var app = builder.Build();
 
