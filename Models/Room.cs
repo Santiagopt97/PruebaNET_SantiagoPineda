@@ -29,7 +29,7 @@ namespace PruebaNET_SantiagoPineda.Models
 
         [Required]
         [Column("max_occupancy_person")]
-        public required byte MaxOccupancyPerson { get; set; }
+        public required int MaxOccupancyPerson { get; set; }
 
 
         //relation with RoomType one to many
