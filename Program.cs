@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PruebaNET_SantiagoPineda.Config;
 using PruebaNET_SantiagoPineda.Data;
+using PruebaNET_SantiagoPineda.Repositories;
+using PruebaNET_SantiagoPineda.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,9 @@ var conectionDb = $"server={db_host};port={db_port};database={db_database};uid={
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(conectionDb, ServerVersion.Parse("8.0.20-mysql")));
 
 builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
+
+builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>(); 
+
 
 //JWT configuration
 builder.Services.AddAuthentication(config =>
