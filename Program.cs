@@ -27,7 +27,7 @@ builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>(); 
 builder.Services.AddScoped<IRoomRepository, RoomService>();
 builder.Services.AddScoped<IGuestRepository, GuestService>(); 
-
+builder.Services.AddScoped<IBookingRepository, BookingService>(); 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeService>(); 
 
 
