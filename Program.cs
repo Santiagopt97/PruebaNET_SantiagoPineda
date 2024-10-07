@@ -26,6 +26,7 @@ builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
 
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>(); 
 builder.Services.AddScoped<IRoomRepository, RoomService>();
+builder.Services.AddScoped<IGuestRepository, GuestService>(); 
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeService>(); 
 
@@ -62,18 +63,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Filtro .NET",
-        Version = "v1",
-        Description = "API for managing a Hotel store database.",
-        Contact = new OpenApiContact
-        {
-            Name = "Santiago Pineda Tobon" ,
-            Email = "santiagopineda99@gmail.com",
-        }
-    });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel", Version = "v1" });
 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer"
+    });
     c.EnableAnnotations();
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
