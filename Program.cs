@@ -24,6 +24,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
 builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
 
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>(); 
+builder.Services.AddScoped<IRoomRepository, RoomService>(); 
+
 
 
 //JWT configuration
@@ -79,10 +81,10 @@ app.Use(async (context, next) =>
         var htmlContent = @"
         <html>
             <head>
-                <title>TechStore API</title>
+                <title>Prueba de .Net de Santiago Pineda</title>
             </head>
             <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; height: 90%; display: flex; flex-direction: column; justify-content: center; align-items: center;'>
-                <h1 style='color: #333; font-size: 36px;'>Welcome to TechStore API</h1>
+                <h1 style='color: #333; font-size: 36px;'>Welcome to Santiago test API</h1>
                 <a href='/swagger' style='color: #007bff; text-decoration: none;'> Click here to Swagger documentation</a>
             </body>
         </html>";
