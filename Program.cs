@@ -24,7 +24,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
 builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
 
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>(); 
-builder.Services.AddScoped<IRoomRepository, RoomService>(); 
+builder.Services.AddScoped<IRoomRepository, RoomService>();
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeService>(); 
 
 
 
