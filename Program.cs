@@ -1,5 +1,9 @@
+using System.Text;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using PruebaNET_SantiagoPineda.Config;
 using PruebaNET_SantiagoPineda.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,32 @@ var db_password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var conectionDb = $"server={db_host};port={db_port};database={db_database};uid={db_username};password={db_password}";
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(conectionDb, ServerVersion.Parse("8.0.20-mysql")));
+
+builder.Services.AddSingleton<Utilities>(); //add singleton to use the utilities
+
+//JWT configuration
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = false;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"),
+        ValidateAudience = false, // false because the audience is public
+        ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!))
+    };
+});
+
+
 
 // Add services to the container.
 
