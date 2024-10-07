@@ -10,8 +10,8 @@ using PruebaNET_SantiagoPineda.Repositories;
 namespace PruebaNET_SantiagoPineda.Controllers.v1.Bokkings
 {
     [ApiController]
-    [Route("api/v1/bokkings")]
-    [Tags("bokkings")]
+    [Route("api/v1/bookings")]
+    [Tags("bookings")]
     public class BookingPostController : BokkingController
     {
         public BookingPostController(IBookingRepository bookingRepository) : base(bookingRepository)
