@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PruebaNET_SantiagoPineda.DTOs.GuestDTO;
 using PruebaNET_SantiagoPineda.Models;
@@ -19,6 +20,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Guests
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Guest>>> GetGuests()
         {
             var guests = await _guestRepository.GetAll();
@@ -26,6 +28,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Guests
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Guest>> GetGuestById(int id)
         {
             var guest = await _guestRepository.GetById(id);
@@ -37,6 +40,7 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Guests
         }
 
         [HttpGet("search")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<GuestDTO>>> GetByKeyword([FromQuery] string keyword)
         {
             return Ok(await _guestRepository.GetByKeyword(keyword));

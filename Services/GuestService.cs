@@ -101,6 +101,7 @@ namespace PruebaNET_SantiagoPineda.Services
                 guest.IdentificationNumber = guestDTO.IdentificationNumber;
                 guest.PhoneNumber = guestDTO.PhoneNumber;
                 guest.Birthdate = guestDTO.BirthDate;
+                _context.Entry(guest).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
         }
