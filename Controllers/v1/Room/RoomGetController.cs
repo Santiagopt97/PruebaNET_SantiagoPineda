@@ -35,6 +35,28 @@ namespace PruebaNET_SantiagoPineda.Controllers.v1.Room
             return Ok(room);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetAllRooms(){
+            var rooms = await _roomRepository.GetAll();
+            return Ok(rooms);
+        }
+
+        [HttpGet]
+        [Route("status")]
+        public async Task<IActionResult> GetStatus()
+        {
+            var rooms = await _roomRepository.GetStatus();
+            return Ok(rooms);
+        }
+
+        [HttpGet]
+        [Route("ocuppied")]
+        public async Task<IActionResult> GetOcuppiedRooms()
+        {
+            var rooms = await _roomRepository.GetOccupied();
+            return Ok(rooms);
+        }
+
     }
 
 }
