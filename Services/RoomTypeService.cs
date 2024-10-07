@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PruebaNET_SantiagoPineda.Data;
+using PruebaNET_SantiagoPineda.DTOs.RoomTypeDTO;
 using PruebaNET_SantiagoPineda.Models;
 using PruebaNET_SantiagoPineda.Repositories;
 
@@ -16,14 +17,26 @@ namespace PruebaNET_SantiagoPineda.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<RoomType>> GetAll()
+        public async Task<IEnumerable<RoomTypeDTO>> GetAll()
         {
-            return await _context.RoomTypes.ToListAsync();
+            var category = await _context.RoomTypes.Select(category => new RoomTypeDTO
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description,
+            }).ToListAsync();
+            return category;
         }
 
-        public async Task<RoomType> GetById(int id)
+        public async Task<RoomTypeDTO> GetById(int id)
         {
-            return await _context.RoomTypes.FindAsync(id);
+            var category = await _context.RoomTypes.Where(r => r.Id == id).Select(c => new RoomTypeDTO
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Description = c.Description
+            }).FirstOrDefaultAsync();
+            return category;
         }
     }
 }
