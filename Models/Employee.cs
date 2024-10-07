@@ -13,7 +13,7 @@ namespace PruebaNET_SantiagoPineda.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
 
         [Required]
         [Column("first_name")]
@@ -29,17 +29,17 @@ namespace PruebaNET_SantiagoPineda.Models
         [Column("email")]
         [StringLength(255)]
         [EmailAddress]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required]
         [Column("identification_number")]
         [StringLength(20)]
-        public string IdentificationNumber { get; set; }
+        public required string IdentificationNumber { get; set; }
 
         [Required]
         [Column("password")]
         [StringLength(255)]
-        public string Password { get; set; }
+        public required string Password { get; set; }
 
         public ICollection<Booking> Bookings { get; set; }
     }

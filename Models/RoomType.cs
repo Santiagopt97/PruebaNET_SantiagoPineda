@@ -13,12 +13,12 @@ namespace PruebaNET_SantiagoPineda.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
 
         [Column("name")]
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Column("description")]
         [MaxLength(200)]

@@ -13,28 +13,28 @@ namespace PruebaNET_SantiagoPineda.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int Id { get; set; }
+        public required int Id { get; set; }
 
         [Required]
         [Column("room_number")]
-        public string RoomNumber { get; set; }
+        public required string RoomNumber { get; set; }
 
         [Required]
         [Column("price_per_night")]
-        public double PricePerNight { get; set; }
+        public required double PricePerNight { get; set; }
 
         [Required]
         [Column("availability")]
-        public bool Availability { get; set; }
+        public required bool Availability { get; set; }
 
         [Required]
         [Column("max_occupancy_person")]
-        public byte MaxOccupancyPerson { get; set; }
+        public required byte MaxOccupancyPerson { get; set; }
 
 
         //relation with RoomType one to many
         [ForeignKey("room_type_id")]
-        public int  RoomTypeId { get; set; }
+        public required int  RoomTypeId { get; set; }
         public RoomType RoomTypes { get; set; }
 
         //relation with Booking one to many
