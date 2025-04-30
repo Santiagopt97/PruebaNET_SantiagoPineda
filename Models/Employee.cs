@@ -25,6 +25,8 @@ namespace PruebaNET_SantiagoPineda.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
+        public string Prueba { get; set; }
+
         [Required]
         [Column("email")]
         [StringLength(255)]
